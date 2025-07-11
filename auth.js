@@ -68,7 +68,6 @@ module.exports.verifyAdmin = (req, res, next) => {
     }
 }
 
-
 // [SECTION] Error Handler
 module.exports.errorHandler = (err, req, res, next) => {
     console.error(err);
