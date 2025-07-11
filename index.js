@@ -2,6 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').config();
 
 // [SECTION] Routes
 const userRoutes = require('./routes/user');
@@ -22,10 +23,8 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// [SECTION] Database Setup (hardcoded URI)
-const MONGODB_URI = 'mongodb+srv://admin123:admin123@b546.is2c4ug.mongodb.net/MovieCatalogAPI?retryWrites=true&w=majority&appName=b546';
-
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+// [SECTION] Database Setup
+mongoose.connect(process.env.MONGODB_STRING)
 
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB Atlas');
@@ -42,10 +41,10 @@ app.all('*', (req, res) => {
 });
 
 // [SECTION] Server Listener
-if (require.main === module) {
-    app.listen(4000, () => {
-        console.log(`API is now online on port 4000`);
-    });
+if(require.main === module) {
+    app.listen( process.env.PORT || 4000, () => {
+        console.log(`API is now online on port ${ process.env.PORT || 4000 }`);
+    })
 }
 
 module.exports = { app, mongoose };

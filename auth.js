@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken");
+const JWT_SECRET_KEY="MovieCatalogAPI"
+require('dotenv').config();
 const User = require('./models/User');
 
 // [SECTION] Token Creation
@@ -10,7 +12,7 @@ module.exports.createAccessToken = (user) => {
     };
 
     // Create the JWT token using the data (ID, email, admin status)
-    const token = jwt.sign(data, "MovieCatalogAPI", { expiresIn: '1h' }); // Token expires in 1 hour
+    const token = jwt.sign(data, JWT_SECRET_KEY, { expiresIn: '1h' }); // Token expires in 1 hour
     return token;  // Return the token to be used for authentication
 }
 
@@ -26,7 +28,7 @@ module.exports.verify = async (req, res, next) => {
     token = token.slice(7);  // Removing 'Bearer ' part
 
     // Verify the JWT token
-    jwt.verify(token, "MovieCatalogAPI", async (err, decodedToken) => {
+    jwt.verify(token, JWT_SECRET_KEY, async (err, decodedToken) => {
         if (err) {
             return res.status(403).send({
                 auth: "Failed",
