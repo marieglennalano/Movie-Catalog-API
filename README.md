@@ -32,7 +32,7 @@ A Node.js + Express REST API for managing a movie catalog with user authenticati
 - **Backend:** Node.js, Express
 - **Database:** MongoDB, Mongoose
 - **Authentication:** JWT
-- **Environment:** CORS, Postman for testing
+- **Environment:** CORS, dotenv, Postman for testing
 
 ---
 
