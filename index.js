@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Allow specific origins (adjust if needed)
 const corsOptions = {
-    origin: ['http://localhost:3000', 'http://localhost:4000', 'https://movie-catalog-fs.vercel.app', 'https://movie-application-weld.vercel.app/'],
+    origin: ['http://localhost:3000', 'http://localhost:4000', 'https://movie-catalog-fs.vercel.app', 'https://movie-application-weld.vercel.app'],
     credentials: true,
     optionsSuccessStatus: 200
 };
